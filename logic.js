@@ -1,8 +1,14 @@
 async function load_graph(){
     res = await get_data()
+    basic_info = await get_basic_data
+    price= basic_info[0];
+    btc_balance= basic_info[1];
+    usdt_balane= basic_info[2];
+    document.getElementById('price').innerHTML = price
+    document.getElementById('btc_balance').innerHTML = btc_balance
+    document.getElementById('usdt_balance').innerHTML = usdt_balane
     let xAxis = [];
     let yAxis = [];
-    console.log(res)
     //let input =  JSON.parse(res)
     for (let i = 0; i<res.length; i++){
         parts = res[i].split(' ');
@@ -42,12 +48,15 @@ async function get_data() {
     let obj;
     const res = await fetch('https://back-end-schmup-ai.herokuapp.com/');
     obj = await res.json()
-    //let res = await response.json()
-    //data = await data.json(); 
-    //data = await JSON.parse(data)
     return obj
 }
 
-console.log('schmup')
+
+async function get_basic_data() {
+  let obj;
+  const res = await fetch('https://back-end-schmup-ai.herokuapp.com/basic-info');
+  obj = await res.json()
+  return obj
+}
 
 load_graph()
