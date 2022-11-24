@@ -40,7 +40,7 @@ async function load_graph(){
 
 async function get_data() {
     let obj;
-    const res = await fetch('http://127.0.0.1:5000/');
+    const res = await fetch('https://back-end-schmup-ai.herokuapp.com/');
     obj = await res.json()
     //let res = await response.json()
     //data = await data.json(); 
